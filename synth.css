@@ -1,0 +1,38 @@
+/* .rangetable, .wavetable {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex: 1 1 100%;
+} */
+.container {
+    display: block;
+    position: relative;
+  }
+
+.controlmodule{
+    border: 1px solid black;
+}
+
+#piano{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+
+#piano div{
+    border: 1px solid black;
+}
+
+.whitekey
+{
+    width: 30px;
+    height: 150px;
+}
+
+.blackkey
+{
+    width: 20px;
+    height: 100px;
+    color: white;
+    background-color: black;
+}

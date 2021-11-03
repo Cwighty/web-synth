@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web-synth</title>
+    <link rel="stylesheet" href="synth.css">
+</head>
+
+<body>
+    <form id="oscillators">
+        <div id="osc1controls">
+            <h3>Osc 1</h3>
+            <div class="wavetable controlmodule">
+                <label class="container">Sine
+                    <input type="radio" name="wavetable1" id="sine-wave" value="Sine">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Square
+                    <input type="radio" name="wavetable1" id="square-wave" value="Square">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Sawtooth
+                    <input type="radio" name="wavetable1" id="sawtooth-wave" value="Sawtooth">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Triangle
+                    <input type="radio" name="wavetable1" id="triangle-wave" value="Triangle">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="rangetable controlmodule">
+                <label class="container">2'
+                    <input type="radio" name="rangetable" id="range2" value="4">
+                </label>
+                <label class="container">4'
+                    <input type="radio" name="rangetable" id="range4" value="2">
+                </label>
+                <label class="container">8'
+                    <input type="radio" name="rangetable" id="range8" value="1">
+                </label>
+                <label class="container">16'
+                    <input type="radio" name="rangetable" id="range16" value=".5">
+                </label>
+                <label class="container">32'
+                    <input type="radio" name="rangetable" id="range32" value=".25">
+                </label>
+                <label class="container">LO
+                    <input type="radio" name="rangetable" id="rangeLo" value=".0625">
+                </label>
+            </div>
+        </div>
+        <div id="osc2controls">
+            <h3>Osc 2</h3>
+            <div class="wavetable controlmodule">
+                <label class="container">Sine
+                    <input type="radio" name="wavetable1" id="sine-wave" value="Sine">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Square
+                    <input type="radio" name="wavetable1" id="square-wave" value="Square">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Sawtooth
+                    <input type="radio" name="wavetable1" id="sawtooth-wave" value="Sawtooth">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Triangle
+                    <input type="radio" name="wavetable1" id="triangle-wave" value="Triangle">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="rangetable controlmodule">
+                <label class="container">2'
+                    <input type="radio" name="rangetable" id="range2" value="4">
+                </label>
+                <label class="container">4'
+                    <input type="radio" name="rangetable" id="range4" value="2">
+                </label>
+                <label class="container">8'
+                    <input type="radio" name="rangetable" id="range8" value="1">
+                </label>
+                <label class="container">16'
+                    <input type="radio" name="rangetable" id="range16" value=".5">
+                </label>
+                <label class="container">32'
+                    <input type="radio" name="rangetable" id="range32" value=".25">
+                </label>
+                <label class="container">LO
+                    <input type="radio" name="rangetable" id="rangeLo" value=".0625">
+                </label>
+            </div>
+            <div class="detune controlmodule">
+                <label for="detune1">Osc 2 Detune</label>
+                <input type="range" id="detune1" min="-7" value="0" max="7" step=".5">
+            </div>
+        </div>
+        <div id="osc3controls">
+            <h3>Osc 3</h3>
+            <div class="wavetable controlmodule">
+                <label class="container">Sine
+                    <input type="radio" name="wavetable1" id="sine-wave" value="Sine">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Square
+                    <input type="radio" name="wavetable1" id="square-wave" value="Square">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Sawtooth
+                    <input type="radio" name="wavetable1" id="sawtooth-wave" value="Sawtooth">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Triangle
+                    <input type="radio" name="wavetable1" id="triangle-wave" value="Triangle">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="rangetable controlmodule">
+                <label class="container">2'
+                    <input type="radio" name="rangetable" id="range2" value="4">
+                </label>
+                <label class="container">4'
+                    <input type="radio" name="rangetable" id="range4" value="2">
+                </label>
+                <label class="container">8'
+                    <input type="radio" name="rangetable" id="range8" value="1">
+                </label>
+                <label class="container">16'
+                    <input type="radio" name="rangetable" id="range16" value=".5">
+                </label>
+                <label class="container">32'
+                    <input type="radio" name="rangetable" id="range32" value=".25">
+                </label>
+                <label class="container">LO
+                    <input type="radio" name="rangetable" id="rangeLo" value=".0625">
+                </label>
+            </div>
+            <div class="detune controlmodule">
+                <label for="detune1">Osc 3 Detune</label>
+                <input type="range" id="detune1" min="-7" value="0" max="7" step=".5">
+            </div>
+        </div>
+    </form>
+    <form id="mixer">
+        <h3>Mixer</h3>
+        <div class="controlmodule">
+            <div class="volume">
+                <label for="osc1volume">Osc 1 Volume</label>
+                <input type="range" id="osc1volume" min="0" max="1" value=".5" step="0.01">
+            </div>
+            <div class="volume">
+                <label for="osc2volume">Osc 2 Volume</label>
+                <input type="range" id="osc2volume" min="0" max="1" value=".5" step="0.01">
+            </div>
+            <div class="volume">
+                <label for="osc3volume">Osc 3 Volume</label>
+                <input type="range" id="osc3volume" min="0" max="1" value=".5" step="0.01">
+            </div>
+        </div>
+    </form>
+    <form id="filters">
+        <div class="controlmodule" id="loudnessfilter">
+            <label class="container">Attack
+                <input type="range" min="0" max="5" value="0" step=".01">
+            </label>
+            <label class="container">Sustain
+                <input type="range" min="0" max="5" value="0" step=".01">
+            </label>
+            <label class="container">Release
+                <input type="range" min="0" max="5" value="0" step=".01">
+            </label>
+        </div>
+    </form>
+    <form id="output">
+        <h3>Output</h3>
+        <label class="container controlmodule">Master Volume
+            <input type="range" id="volume" min="0" max="1" value=".5" step="0.01">
+        </label>
+    </form>
+
+    <div id="piano">
+        <div class="whitekey">C</div>
+        <div class="blackkey">C#</div>
+        <div class="whitekey">D</div>
+        <div class="blackkey">D#</div>
+        <div class="whitekey">E</div>
+        <div class="whitekey">F</div>
+        <div class="blackkey">F#</div>
+        <div class="whitekey">G</div>
+        <div class="blackkey">G#</div>
+        <div class="whitekey">A</div>
+        <div class="blackkey">A#</div>
+        <div class="whitekey">B</div>
+    </div>
+    <script src="synthLogic.js"></script>
+</body>
+
+</html>
