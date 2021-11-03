@@ -10,169 +10,125 @@
 </head>
 
 <body>
-    <form id="oscillators">
-        <div id="osc1controls">
-            <h3>Osc 1</h3>
-            <div class="wavetable controlmodule">
-                <label class="container">Sine
-                    <input type="radio" name="wavetable1" id="sine-wave" value="Sine">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">Square
-                    <input type="radio" name="wavetable1" id="square-wave" value="Square">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">Sawtooth
-                    <input type="radio" name="wavetable1" id="sawtooth-wave" value="Sawtooth">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">Triangle
-                    <input type="radio" name="wavetable1" id="triangle-wave" value="Triangle">
-                    <span class="checkmark"></span>
+    <div class="synthcontainer">
+        <form class="rangecontainer">
+            <h2>Oscillators</h2>
+            <div id="range1">
+                <label for="range1">OSC 1
+                    <select name="range1">
+                        <option value="4">2'</option>
+                        <option value="2">4'</option>
+                        <option value="1">8'</option>
+                        <option value=".5">16'</option>
+                        <option value=".25">32'</option>
+                        <option value=".0625">LO</option>
+                    </select>
                 </label>
             </div>
-            <div class="rangetable controlmodule">
-                <label class="container">2'
-                    <input type="radio" name="rangetable" id="range2" value="4">
-                </label>
-                <label class="container">4'
-                    <input type="radio" name="rangetable" id="range4" value="2">
-                </label>
-                <label class="container">8'
-                    <input type="radio" name="rangetable" id="range8" value="1">
-                </label>
-                <label class="container">16'
-                    <input type="radio" name="rangetable" id="range16" value=".5">
-                </label>
-                <label class="container">32'
-                    <input type="radio" name="rangetable" id="range32" value=".25">
-                </label>
-                <label class="container">LO
-                    <input type="radio" name="rangetable" id="rangeLo" value=".0625">
+            <div id="range2">
+                <label for="range2">OSC 2
+                    <select name="range2">
+                        <option value="4">2'</option>
+                        <option value="2">4'</option>
+                        <option value="1">8'</option>
+                        <option value=".5">16'</option>
+                        <option value=".25">32'</option>
+                        <option value=".0625">LO</option>
+                    </select>
                 </label>
             </div>
-        </div>
-        <div id="osc2controls">
-            <h3>Osc 2</h3>
-            <div class="wavetable controlmodule">
-                <label class="container">Sine
-                    <input type="radio" name="wavetable1" id="sine-wave" value="Sine">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">Square
-                    <input type="radio" name="wavetable1" id="square-wave" value="Square">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">Sawtooth
-                    <input type="radio" name="wavetable1" id="sawtooth-wave" value="Sawtooth">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">Triangle
-                    <input type="radio" name="wavetable1" id="triangle-wave" value="Triangle">
-                    <span class="checkmark"></span>
+            <div id="range3">
+                <label for="range3">OSC 3
+                    <select name="range3">
+                        <option value="4">2'</option>
+                        <option value="2">4'</option>
+                        <option value="1">8'</option>
+                        <option value=".5">16'</option>
+                        <option value=".25">32'</option>
+                        <option value=".0625">LO</option>
+                    </select>
                 </label>
             </div>
-            <div class="rangetable controlmodule">
-                <label class="container">2'
-                    <input type="radio" name="rangetable" id="range2" value="4">
-                </label>
-                <label class="container">4'
-                    <input type="radio" name="rangetable" id="range4" value="2">
-                </label>
-                <label class="container">8'
-                    <input type="radio" name="rangetable" id="range8" value="1">
-                </label>
-                <label class="container">16'
-                    <input type="radio" name="rangetable" id="range16" value=".5">
-                </label>
-                <label class="container">32'
-                    <input type="radio" name="rangetable" id="range32" value=".25">
-                </label>
-                <label class="container">LO
-                    <input type="radio" name="rangetable" id="rangeLo" value=".0625">
+        </form>
+
+        <form class="detunecontainer">
+            <div></div>
+            <div class="detune" id="detune2">
+                <label for="detune2">Osc 2 Detune</label>
+                <input type="range" id="detune2" min="-7" value="0" max="7" step=".5">
+            </div>
+            <div class="detune" id="detune3">
+                <label for="detune3">Osc 3 Detune</label>
+                <input type="range" id="detune3" min="-7" value="0" max="7" step=".5">
+            </div>
+            <h2>Tuning</h2>
+        </form>
+
+        <form class="wavetablecontainer">
+            <h2>Wavetable</h2>
+            <div class="wavetable" id="wavetable1">
+                <label for="wavetable1">
+                    <select name="wavetable1">
+                        <option value="sine-wave">Sine</option>
+                        <option value="square-wave">Square</option>
+                        <option value="sawtooth-wave">Sawtooth</option>
+                        <option value="triangle-wave">Triangle</option>
+                    </select>
                 </label>
             </div>
-            <div class="detune controlmodule">
-                <label for="detune1">Osc 2 Detune</label>
-                <input type="range" id="detune1" min="-7" value="0" max="7" step=".5">
-            </div>
-        </div>
-        <div id="osc3controls">
-            <h3>Osc 3</h3>
-            <div class="wavetable controlmodule">
-                <label class="container">Sine
-                    <input type="radio" name="wavetable1" id="sine-wave" value="Sine">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">Square
-                    <input type="radio" name="wavetable1" id="square-wave" value="Square">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">Sawtooth
-                    <input type="radio" name="wavetable1" id="sawtooth-wave" value="Sawtooth">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">Triangle
-                    <input type="radio" name="wavetable1" id="triangle-wave" value="Triangle">
-                    <span class="checkmark"></span>
+            <div class="wavetable" id="wavetable2">
+                <label for="wavetable2">
+                    <select name="wavetable2">
+                        <option value="sine-wave">Sine</option>
+                        <option value="square-wave">Square</option>
+                        <option value="sawtooth-wave">Sawtooth</option>
+                        <option value="triangle-wave">Triangle</option>
+                    </select>
                 </label>
             </div>
-            <div class="rangetable controlmodule">
-                <label class="container">2'
-                    <input type="radio" name="rangetable" id="range2" value="4">
-                </label>
-                <label class="container">4'
-                    <input type="radio" name="rangetable" id="range4" value="2">
-                </label>
-                <label class="container">8'
-                    <input type="radio" name="rangetable" id="range8" value="1">
-                </label>
-                <label class="container">16'
-                    <input type="radio" name="rangetable" id="range16" value=".5">
-                </label>
-                <label class="container">32'
-                    <input type="radio" name="rangetable" id="range32" value=".25">
-                </label>
-                <label class="container">LO
-                    <input type="radio" name="rangetable" id="rangeLo" value=".0625">
+            <div class="wavetable controlmodule" id="wavetable3">
+                <label for="wavetable3">
+                    <select name="wavetable3">
+                        <option value="sine-wave">Sine</option>
+                        <option value="square-wave">Square</option>
+                        <option value="sawtooth-wave">Sawtooth</option>
+                        <option value="triangle-wave">Triangle</option>
+                    </select>
                 </label>
             </div>
-            <div class="detune controlmodule">
-                <label for="detune1">Osc 3 Detune</label>
-                <input type="range" id="detune1" min="-7" value="0" max="7" step=".5">
-            </div>
-        </div>
-    </form>
-    <form id="mixer">
-        <h3>Mixer</h3>
-        <div class="controlmodule">
-            <div class="volume">
+        </form>
+
+        <form class="mixcontainer">
+            <h2>Mixer</h2>
+            <div class="volume" id="mix1">
                 <label for="osc1volume">Osc 1 Volume</label>
                 <input type="range" id="osc1volume" min="0" max="1" value=".5" step="0.01">
             </div>
-            <div class="volume">
+            <div class="volume" id="mix2">
                 <label for="osc2volume">Osc 2 Volume</label>
                 <input type="range" id="osc2volume" min="0" max="1" value=".5" step="0.01">
             </div>
-            <div class="volume">
+            <div class="volume" id="mix3">
                 <label for="osc3volume">Osc 3 Volume</label>
                 <input type="range" id="osc3volume" min="0" max="1" value=".5" step="0.01">
             </div>
-        </div>
-    </form>
-    <form id="filters">
-        <div class="controlmodule" id="loudnessfilter">
-            <label class="container">Attack
+        </form>
+
+        <form id="filters">
+            <h2>Envelope</h2>
+            <label class="container" id="env1">Attack
                 <input type="range" min="0" max="5" value="0" step=".01">
             </label>
-            <label class="container">Sustain
+            <label class="container" id="env2">Sustain
                 <input type="range" min="0" max="5" value="0" step=".01">
             </label>
-            <label class="container">Release
+            <label class="container" id="env3">Release
                 <input type="range" min="0" max="5" value="0" step=".01">
             </label>
-        </div>
-    </form>
+        </form>
+
+    </div>
+
     <form id="output">
         <h3>Output</h3>
         <label class="container controlmodule">Master Volume
@@ -181,6 +137,30 @@
     </form>
 
     <div id="piano">
+        <div class="whitekey">C</div>
+        <div class="blackkey">C#</div>
+        <div class="whitekey">D</div>
+        <div class="blackkey">D#</div>
+        <div class="whitekey">E</div>
+        <div class="whitekey">F</div>
+        <div class="blackkey">F#</div>
+        <div class="whitekey">G</div>
+        <div class="blackkey">G#</div>
+        <div class="whitekey">A</div>
+        <div class="blackkey">A#</div>
+        <div class="whitekey">B</div>
+        <div class="whitekey">C</div>
+        <div class="blackkey">C#</div>
+        <div class="whitekey">D</div>
+        <div class="blackkey">D#</div>
+        <div class="whitekey">E</div>
+        <div class="whitekey">F</div>
+        <div class="blackkey">F#</div>
+        <div class="whitekey">G</div>
+        <div class="blackkey">G#</div>
+        <div class="whitekey">A</div>
+        <div class="blackkey">A#</div>
+        <div class="whitekey">B</div>
         <div class="whitekey">C</div>
         <div class="blackkey">C#</div>
         <div class="whitekey">D</div>

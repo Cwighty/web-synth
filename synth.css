@@ -4,14 +4,10 @@
     flex-wrap: wrap;
     flex: 1 1 100%;
 } */
-.container {
+.container{
     display: block;
     position: relative;
   }
-
-.controlmodule{
-    border: 1px solid black;
-}
 
 #piano{
     display: flex;
@@ -36,3 +32,89 @@
     color: white;
     background-color: black;
 }
+
+.synthcontainer, .rangecontainer, .detunecontainer, .mixcontainer, .wavetablecontainer{
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid white;
+    background-color: black;
+    color: white;
+}
+.synthcontainer
+{
+    grid-template-areas: 
+    'r dt wt mix filters';
+    margin: 2% 10%;
+}
+.rangecontainer{
+    grid-template-areas: 
+    'r1' 'r2' 'r3';
+}
+.detunecontainer{
+    grid-template-areas: 
+    'dt1' 'dt2' 'dt3';
+}
+.wavetablecontainer{
+    grid-template-areas: 
+    'wt1' 'wt2' 'wt3';
+}
+.mixcontainer{
+    grid-template-areas: 
+    'mix1' 'mix2' 'mix3';
+}
+
+
+.rangecontainer{
+    grid-area: r;
+}
+#range1{
+    grid-area: r1;
+}
+#range2{
+    grid-area: r2;
+}
+#range3{
+    grid-area: r3;
+}
+.detunecontainer{
+    grid-area: dt;
+}
+#detune1{
+    grid-area: dt1;
+}
+#detune2{
+    grid-area: dt2;
+}
+#detune3{
+    grid-area: dt3;
+}
+.wavetablecontainer{
+    grid-area: wt;
+}
+#wavetable1{
+    grid-area: wt1;
+}
+#wavetable2{
+    grid-area: wt2;
+}
+#wavetable3{
+    grid-area: wt3;
+}
+.mixcontainer{
+    grid-area: mix;
+}
+#mix1{
+    grid-area: mix1;
+}
+#mix2{
+    grid-area: mix2;
+}
+#mix3{
+    grid-area: mix3;
+}
+#filters
+{
+    grid-area: filters;
+}
+
