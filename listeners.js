@@ -4,9 +4,11 @@ window.addEventListener('load', () => {
     var final = audioCtx.destination;
     var baseFrequency = 440;
 
+
     if (audioCtx.state === 'suspended') {
         audioCtx.resume();
-    }
+    };
+
 
     class Oscillator {
         constructor(audioContext, baseFrequency) {
@@ -127,11 +129,24 @@ window.addEventListener('load', () => {
     }
 
     let osc1 = new Oscillator(audioCtx, baseFrequency);
+    let osc2 = new Oscillator(audioCtx, baseFrequency);
+    let osc3 = new Oscillator(audioCtx, baseFrequency);
 
     let rangeControl1 = document.querySelector('#range1 select');
-    rangeControl1.addEventListener('change', (e)=>{
+    rangeControl1.addEventListener('change', (e) => {
         console.log(e.target.value);
         osc1.setRange(e.target.value);
     });
 
+    let rangeControl2 = document.querySelector('#range2 select');
+    rangeControl2.addEventListener('change', (e) => {
+        console.log(e.target.value);
+        osc2.setRange(e.target.value);
+    });
+
+    let rangeControl3 = document.querySelector('#range3 select');
+    rangeControl3.addEventListener('change', (e) => {
+        console.log(e.target.value);
+        osc3.setRange(e.target.value);
+    });
 })
