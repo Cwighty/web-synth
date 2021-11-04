@@ -1,3 +1,4 @@
+// @ts-ignore
 var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 var final = audioCtx.destination;
 
