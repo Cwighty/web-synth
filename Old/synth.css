@@ -4,7 +4,7 @@
     flex-wrap: wrap;
     flex: 1 1 100%;
 } */
-input{
+.synthcontainer input{
     padding: 5px;
     float: right;
 }
@@ -16,14 +16,16 @@ label{
     display: grid;
     gap: 10px;
     padding: 10px;
-    border: 1px solid white;
-    background-color: black;
-    color: white;
+    border-bottom: 2px solid #BBFFEA;
+    border-right: 2px solid #BBFFEA;
+    background-color: #191a1c;
+    color: #BBFFEA;
 }
 .synthcontainer
 {
     grid-template-areas: 
-    'r dt wt mix filters';
+    'r dt wt mix filters'
+    'kb kb kb kb kb';
     margin: 2% 10%;
 }
 
@@ -103,7 +105,10 @@ label{
     grid-area: envasr;
 }
 #filter{
-    border-bottom: 1px solid white;
+    border-bottom: 2px solid #BBFFEA;;
+}
+.keyboard{
+    grid-area: kb;
 }
 
 #piano{
@@ -131,7 +136,7 @@ label{
     width: 20px;
     height: 100px;
     color: white;
-    background-color: black;
+    background-color: #191a1c;
     position: relative;
 }
 .blackkey:hover{

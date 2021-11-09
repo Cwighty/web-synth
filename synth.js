@@ -22,7 +22,7 @@ window.addEventListener('load', () => {
             //Set up volume control for oscillator
             this.mixNode = new GainNode(audioContext);
             this.mixNode.gain.value = this.volume;
-            this.mixNode.connect(audioContext.destination);
+            //this.mixNode.connect(audioContext.destination);
 
             //Set up and start the oscillator with the initial note and wave type (Sine)
             this.oscillatorNode = new OscillatorNode(audioContext);
@@ -106,124 +106,224 @@ window.addEventListener('load', () => {
     }
 
     class Filter {
-        frequency = 400;
-        emphasis = 1;
-        contour = .5;
+        constructor(audioContext)
+        {
+            this.audioContext = audioContext;
+            //Set up biquad filter default values
+            this.biquad = new BiquadFilterNode(audioContext);
+            this.biquad.type = "lowpass";
+            this.biquad.frequency.value = 1200;
+            this.biquad.gain.value = 0.001;
+            this.biquad.Q.value = 1;
+
+            //Set up envelope to control filter gain
+            this.envelope = new Envelope(audioContext, this.biquad.gain);
+        }
+        audioContext = new AudioContext();
+        biquad = new BiquadFilterNode(this.audioContext);
         envelope = new Envelope();
         setFrequency(frequency) {
-            this.frequency = frequency
+            this.biquad.frequency.exponentialRampToValueAtTime(frequency, this.audioContext.currentTime + .001);
         }
-        getFrequency() {
-            return frequency
+        setFilterGain(gain) {
+            this.biquad.gain.exponentialRampToValueAtTime(gain, this.audioContext.currentTime + .001);
         }
-        setEmphasis(emphasis) {
-            this.emphasis = emphasis
-        }
-        getEmphasis() {
-            return emphasis
-        }
-        setContour(contour) {
-            this.contour = contour
-        }
-        getContour() {
-            return contour
+        setQ(q) {
+            this.biquad.Q.exponentialRampToValueAtTime(q, this.audioContext.currentTime + .001);
         }
     }
 
     class Envelope {
-        attack = 0;
-        sustain = 1;
-        release = 0;
+        constructor(audioContext, nodeToControl)
+        {
+            this.audioContext = audioContext;
+            this.gain = nodeToControl;
+        }
+        audioContext = new AudioContext();
+        gain = Object;
+        attack = 500;
+        sustain = 5;
+        release = 5;
+        ASR = [];
+        triggerOn(){
+            // ramp the volume to each point on the asr /‾\
+            let now = this.audioContext.currentTime;
+            let totalTime = (Number(this.attack) + Number(this.sustain) + Number(this.release));
+            console.log(this.ASR);
+            this.gain.cancelScheduledValues(now);
+            //this.gain.setValueAtTime(0.001,now);
+            this.gain.setValueCurveAtTime(this.ASR, now, totalTime/1000);
+        }
+        triggerOff(){
+
+        }
         setAttack(attack) {
             this.attack = attack
-        }
-        getAttack() {
-            return attack
+            this.updateASRArray();
         }
         setSustain(sustain) {
-            this.sustain = sustain
-        }
-        getSustain() {
-            return sustain
+            this.sustain = sustain;
+            this.updateASRArray();
         }
         setRelease(release) {
-            this.release = release
+            this.release = release;
+            this.updateASRArray();
         }
-        getRelease() {
-            return release
+        updateASRArray(){
+            this.ASR = [];
+            let a = 1.0/this.attack;
+            let b = a;
+            for (let i = 0; i < this.attack; i++)
+            {
+                this.ASR.push(b);
+                b += a;
+            }
+            for (let i = 0; i < this.sustain; i++)
+            {
+                this.ASR.push(1);
+            }
+            a = 1.0/this.release;
+            b = 1;
+            for (let i=0; i < this.release; i++)
+            {
+                this.ASR.push(b);
+                b -= a;
+            }
         }
     }
-
+// ----------------------------------------------------AUDIO NODES AND ROUTING------------------------------------------------
     let osc1 = new Oscillator(audioCtx, note);
     let osc2 = new Oscillator(audioCtx, note);
     let osc3 = new Oscillator(audioCtx, note);
+    let oscMix = new GainNode(audioCtx);
+    
+    let filter1 = new Filter(audioCtx);
+    let envMix = new GainNode(audioCtx);
+    let env1 = new Envelope(audioCtx, envMix.gain);
+
+    let masterVol = new GainNode(audioCtx);
+
+    // route all osc outputs through oscMix
+    osc1.mixNode.connect(oscMix);
+    osc2.mixNode.connect(oscMix);
+    osc3.mixNode.connect(oscMix);
+
+    // route oscMix output through the filter
+    oscMix.connect(filter1.biquad);
+
+    // route filter through envmix (controlled by env1)
+    filter1.biquad.connect(envMix);
+
+    // route envelope through master volume control
+    envMix.connect(masterVol);
+
+    // send final mix to the output
+    masterVol.connect(final);
+
+    //env1.triggerOn();
 
     //----------------------------------------------CONTROL EVENT LISTENERS----------------------------------------------------
-    let rangeControl1 = document.querySelector('#range1 select');
+    let rangeControl1 = document.querySelector('#range1');
     rangeControl1.addEventListener('change', (e) => {
         //console.log(e.target.value);
         osc1.setRange(e.target.value);
     });
 
-    let rangeControl2 = document.querySelector('#range2 select');
+    let rangeControl2 = document.querySelector('#range2');
     rangeControl2.addEventListener('change', (e) => {
         //console.log(e.target.value);
         osc2.setRange(e.target.value);
     });
 
-    let rangeControl3 = document.querySelector('#range3 select');
+    let rangeControl3 = document.querySelector('#range3');
     rangeControl3.addEventListener('change', (e) => {
         //console.log(e.target.value);
         osc3.setRange(e.target.value);
     });
 
-    let detune2 = document.querySelector('#detune2 input');
+    let detune2 = document.querySelector('#detune2');
     detune2.addEventListener('input', (e) => {
         //console.log(e.target.value);
         osc2.setDetune(e.target.value);
     });
 
-    let detune3 = document.querySelector('#detune3 input');
+    let detune3 = document.querySelector('#detune3');
     detune3.addEventListener('input', (e) => {
         //console.log(e.target.value);
         osc3.setDetune(e.target.value);
     });
 
-    let wavetable1 = document.querySelector('#wavetable1 select');
+    let wavetable1 = document.querySelector('#wavetable1');
     wavetable1.addEventListener('change', (e) => {
         //console.log(e.target.value);
         osc1.oscillatorNode.type = e.target.value;
     });
 
-    let wavetable2 = document.querySelector('#wavetable2 select');
+    let wavetable2 = document.querySelector('#wavetable2');
     wavetable2.addEventListener('change', (e) => {
         //console.log(e.target.value);
         osc2.oscillatorNode.type = e.target.value;
     });
 
-    let wavetable3 = document.querySelector('#wavetable3 select');
+    let wavetable3 = document.querySelector('#wavetable3');
     wavetable3.addEventListener('change', (e) => {
         //console.log(e.target.value);
         osc3.oscillatorNode.type = e.target.value;
     });
 
-    let mix1 = document.querySelector('#mix1 input');
+    let mix1 = document.querySelector('#mix1');
     mix1.addEventListener('input', (e) => {
-        //console.log(e.target.value);
+        console.log(e.target.value);
         osc1.setVolume(e.target.value);
     });
 
-    let mix2 = document.querySelector('#mix2 input');
+    let mix2 = document.querySelector('#mix2');
     mix2.addEventListener('input', (e) => {
-        //console.log(e.target.value);
+        console.log(e.target.value);
         osc2.setVolume(e.target.value);
     });
 
-    let mix3 = document.querySelector('#mix3 input');
+    let mix3 = document.querySelector('#mix3');
     mix3.addEventListener('input', (e) => {
-        //console.log(e.target.value);
+        console.log(e.target.value);
         osc3.setVolume(e.target.value);
     });
+
+    let env1a = document.querySelector('#env1a');
+    env1a.addEventListener('input', (e) => {
+        console.log(e.target.value);
+        env1.setAttack(e.target.value);
+    });
+
+    let env1s = document.querySelector('#env1s');
+    env1s.addEventListener('input', (e) => {
+        console.log(e.target.value);
+        env1.setSustain(e.target.value);
+    });
+
+    let env1r = document.querySelector('#env1r');
+    env1r.addEventListener('input', (e) => {
+        console.log(e.target.value);
+        env1.setRelease(e.target.value);
+    });
+
+    let cutoff = document.querySelector("#cutoff");
+    cutoff.addEventListener('input', (e) => {
+        console.log(e.target.value);
+        filter1.setFrequency(e.target.value);
+    })
+
+    let emphasis = document.querySelector("#emphasis");
+    emphasis.addEventListener('input', (e) => {
+        console.log(e.target.value);
+        filter1.setFilterGain(e.target.value);
+    })
+
+    let contour = document.querySelector("#contour");
+    contour.addEventListener('input', (e) => {
+        console.log(e.target.value);
+        filter1.setQ(e.target.value);
+    })
 
     //----------------------------------------------MIDI/Keyboard CONTROL----------------------------------------------------
     let noteFrequency =
@@ -242,52 +342,53 @@ window.addEventListener('load', () => {
         "B4": 493,
         "C5": 523,
     }
-    let UpdateBaseFrequency = (newFrequency) => {
+    let triggerNote = (newFrequency) => {
         osc1.updateNote(newFrequency);
         osc2.updateNote(newFrequency);
         osc3.updateNote(newFrequency);
+        env1.triggerOn();
     };
     window.addEventListener('keypress', (e)=>{
         console.log(e);
         switch (e.key){
             case 'a':
-                UpdateBaseFrequency(noteFrequency.C4);
+                triggerNote(noteFrequency.C4);
                 break;
             case 'w':
-                UpdateBaseFrequency(noteFrequency["C#4"]);
+                triggerNote(noteFrequency["C#4"]);
                 break;
             case 's':
-                UpdateBaseFrequency(noteFrequency.D4);
+                triggerNote(noteFrequency.D4);
                 break;
             case 'e':
-                UpdateBaseFrequency(noteFrequency["D#4"]);
+                triggerNote(noteFrequency["D#4"]);
                 break;
             case 'd':
-                UpdateBaseFrequency(noteFrequency.E4);
+                triggerNote(noteFrequency.E4);
                 break;
             case 'f':
-                UpdateBaseFrequency(noteFrequency.F4);
+                triggerNote(noteFrequency.F4);
                 break;
             case 't':
-                UpdateBaseFrequency(noteFrequency["F#4"]);
+                triggerNote(noteFrequency["F#4"]);
                 break;
             case 'j':
-                UpdateBaseFrequency(noteFrequency.G4);
+                triggerNote(noteFrequency.G4);
                 break;
             case 'i':
-                UpdateBaseFrequency(noteFrequency["G#4"]);
+                triggerNote(noteFrequency["G#4"]);
                 break;
             case 'k':
-                UpdateBaseFrequency(noteFrequency.A4);
+                triggerNote(noteFrequency.A4);
                 break;
             case 'o':
-                UpdateBaseFrequency(noteFrequency["A#4"]);
+                triggerNote(noteFrequency["A#4"]);
                 break;
             case 'l':
-                UpdateBaseFrequency(noteFrequency.B4);
+                triggerNote(noteFrequency.B4);
                 break;
             case ';':
-                UpdateBaseFrequency(noteFrequency.C5);
+                triggerNote(noteFrequency.C5);
                 break;
 
         }
