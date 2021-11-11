@@ -29,12 +29,27 @@ function frequencyFromNoteNumber( note ) {
 function Voice(note, velocity) {
   this.osc1 = audioContext.createOscillator();
   this.osc1.frequency.value = frequencyFromNoteNumber(note);
-  this.osc1.connect(audioContext.destination);
+
+  this.osc1Gain = new GainNode(audioContext);
+  this.osc1Gain.gain.value = 0.5;
+  this.osc1.connect(this.osc1Gain);
+  this.osc1Gain.connect(audioContext.destination);
+
+  this.osc2 = audioContext.createOscillator();
+  this.osc2.frequency.value = frequencyFromNoteNumber(note);
+
+  this.osc2Gain = new GainNode(audioContext);
+  this.osc2Gain.gain.value = 0.5;
+  this.osc2.connect(this.osc2Gain);
+  this.osc2Gain.connect(audioContext.destination);
+
   this.osc1.start(0);
+  this.osc2.start(0);
 }
 Voice.prototype.noteOff = function() {
 	var now =  audioContext.currentTime;
 	this.osc1.stop(0);
+  this.osc2.stop(0);
 }
 
 export default {
