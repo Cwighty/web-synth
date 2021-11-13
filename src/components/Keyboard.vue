@@ -9,7 +9,8 @@
   <div class="col-2">
     <h3>Volume</h3>
     <webaudio-knob
-      id="mastervolume"
+      v-model="masterVolume"
+      v-on:input="$store.commit('updateMasterVolume', $event)"
       src="./src/assets/knobs/orange_slider.png"
       sprites="30"
       type="range"

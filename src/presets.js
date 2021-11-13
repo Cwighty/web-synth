@@ -19,6 +19,7 @@ export let presets = [
             filterQ: 0,
             filterEnv: [0, 1, 1, 0],
             volumeEnv: [0, 1, 1, 0],
+            masterVolume: 0.5,
         }
     }
 ];
