@@ -1,3 +1,4 @@
+// Presets.js contains an object representing an array of presets that contain all the control values of the synth
 export let presets = [
     {
         name: "default",

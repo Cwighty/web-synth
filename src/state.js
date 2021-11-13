@@ -1,3 +1,6 @@
+// state.js contains the vuex store for making the synth controls accessible in every component (global)
+// Events on the inputs of the control components pass those events
+// to the stores mutation methods to update each synth control value
 import { createStore } from "vuex"
 import { presets } from "./presets.js"
 

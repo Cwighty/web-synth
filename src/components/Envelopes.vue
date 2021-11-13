@@ -1,3 +1,4 @@
+<!--Envelopes.vue represents the envelope control section of the control rack including both the filter and volume envelopes-->
 <template>
   <div class="col">
     <div>

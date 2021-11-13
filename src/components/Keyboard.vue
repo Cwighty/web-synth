@@ -1,3 +1,4 @@
+<!--Keyboard.vue represents the lower keyboard / playing controls of a synth including the global volume / keyboard / pitch wheel / etc-->
 <template>
   <div class="col-1"></div>
   <div class="col-5 keyboard">

@@ -1,3 +1,5 @@
+// Keys.js contains an array for converting from keystrokes to midi note numbers, 
+// its in its own file to make it more modular in case I want to replace it
 let keys = new Array(256);
 
 keys[65] = 60 //C4

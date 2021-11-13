@@ -1,3 +1,4 @@
+<!--Rack.vue is a component that represents the main control rack/section of a synth-->
 <template>
   <div class="col-1"></div>
   <div class="col-1">

@@ -1,3 +1,4 @@
+<!--Filterbank.vue represents the filter control section of the control rack-->
 <template>
   <div class="col-1">
     <h5>Filter</h5>

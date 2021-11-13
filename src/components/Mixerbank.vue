@@ -1,3 +1,4 @@
+<!--Oscbank.vue represents the oscillator volume mixer section of the control rack-->
 <template>
   <div class="col-2">
     <h5>Mixer</h5>

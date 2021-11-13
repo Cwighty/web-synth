@@ -1,3 +1,4 @@
+<!--Oscbank.vue represents the oscillator control section of the control rack-->
 <template>
   <div class="col">
     <h5>Oscillator Bank</h5>
