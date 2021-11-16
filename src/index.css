@@ -6,3 +6,60 @@
   color: #2c3e50;
   margin-top: 60px;
 }
+.container{
+  width: 2000px !important;
+}
+h6{
+  padding: 10px;
+  padding-top: 15px;
+  text-align: center;
+}
+#globalcontrols, #oscbank, #mixerbank, #filterbank, #envelopes{
+  border: 1px solid #BBFFEA;
+  border-radius: 5px;
+}
+
+.envelope{
+  padding: 20px;
+}
+.envelope label{
+  display: flex;
+}
+
+#filterbank label{
+  justify-content: center;
+  padding: 10px;
+}
+#filterbank webaudio-knob{
+  padding-top: 10px;
+}
+
+#oscbank{
+  padding: 40px;
+  padding-top: 5px;
+
+  display: flex;
+  flex-direction: column;
+}
+#oscbank select {
+  padding: 10px;
+}
+#oscbank webaudio-knob {
+  padding: 20px;
+}
+
+#mixerbank{
+  padding: 50px;
+  padding-top: 5px;
+  padding-left: 0px;
+  padding-right: 5px;
+}
+#mixerbank webaudio-knob{
+  padding: 50px 0px;
+  padding-left: 5px;
+  margin: 0px;
+}
+
+.keyboard{
+  border: 1px solid #BBFFEA;
+}

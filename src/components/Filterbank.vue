@@ -1,6 +1,6 @@
 <!--Filterbank.vue represents the filter control section of the control rack-->
 <template>
-  <div class="col-1">
+  <div class="col-lg-1" id="filterbank">
     <h5>Filter</h5>
     <label class="row"
       >Cutoff

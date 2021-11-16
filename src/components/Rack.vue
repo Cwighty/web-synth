@@ -1,8 +1,9 @@
 <!--Rack.vue is a component that represents the main control rack/section of a synth-->
 <template>
-  <div class="col-1"></div>
-  <div class="col-1">
+  <div class="col-lg-1"></div>
+  <div class="col-lg-1">
     <h5>Global Controls</h5>
+    <button v-on:click="$emit('audioReset', $event)">Reset Audio</button>
   </div>
   <Oscbank />
   <Mixerbank />

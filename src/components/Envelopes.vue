@@ -1,9 +1,11 @@
 <!--Envelopes.vue represents the envelope control section of the control rack including both the filter and volume envelopes-->
 <template>
-  <div class="col">
+  <div class="col-lg" id="envelopes">
     <div>
-      <form class="row">
-        <div class="col">
+      <form class="row envelope">
+        <h5>Filter</h5>
+        <div class="col-lg">
+          <label>A</label>
           <webaudio-slider
             v-model="filterA"
             v-on:input="$store.commit('updateFilterA', $event)"
@@ -17,9 +19,9 @@
             value="20"
             step="1"
           ></webaudio-slider>
-          <label>Attack</label>
         </div>
-        <div class="col">
+        <div class="col-lg">
+          <label>D</label>
           <webaudio-slider
             v-model="filterD"
             v-on:input="$store.commit('updateFilterD', $event)"
@@ -33,9 +35,9 @@
             value="20"
             step="1"
           ></webaudio-slider>
-          <label>Decay</label>
         </div>
-        <div class="col">
+        <div class="col-lg">
+          <label>S</label>
           <webaudio-slider
             v-model="filterS"
             v-on:input="$store.commit('updateFilterS', $event)"
@@ -49,9 +51,9 @@
             value="20"
             step="1"
           ></webaudio-slider>
-          <label>Sustain</label>
         </div>
-        <div class="col">
+        <div class="col-lg">
+          <label>R</label>
           <webaudio-slider
             v-model="filterR"
             v-on:input="$store.commit('updateFilterR', $event)"
@@ -65,12 +67,12 @@
             value="20"
             step="1"
           ></webaudio-slider>
-          <label>Release</label>
         </div>
       </form>
-      <form class="row">
-        <label class="col"
-          >Attack
+      <form class="row envelope">
+        <h5>Envelope</h5>
+        <div class="col-lg">
+          <label>A</label>
           <webaudio-slider
             v-model="envA"
             v-on:input="$store.commit('updateEnvA', $event)"
@@ -84,9 +86,9 @@
             value="20"
             step="1"
           ></webaudio-slider>
-        </label>
-        <label class="col"
-          >Decay
+        </div>
+        <div class="col-lg">
+          <label>D</label>
           <webaudio-slider
             v-model="envD"
             v-on:input="$store.commit('updateEnvD', $event)"
@@ -100,9 +102,9 @@
             value="20"
             step="1"
           ></webaudio-slider>
-        </label>
-        <label class="col"
-          >Sustain
+        </div>
+        <div class="col-lg">
+          <label>S</label>
           <webaudio-slider
             v-model="envS"
             v-on:input="$store.commit('updateEnvS', $event)"
@@ -112,13 +114,13 @@
             tooltip="%s ms"
             type="range"
             min="0"
-            max="10000"
-            value="20"
-            step="1"
+            max="1"
+            value=".5"
+            step=".01"
           ></webaudio-slider>
-        </label>
-        <label class="col"
-          >Release
+        </div>
+        <div class="col-lg">
+          <label>R</label>
           <webaudio-slider
             v-model="envR"
             v-on:input="$store.commit('updateEnvR', $event)"
@@ -132,12 +134,11 @@
             value="20"
             step="1"
           ></webaudio-slider>
-        </label>
+        </div>
       </form>
-      <h5>Envelopes</h5>
     </div>
   </div>
-  <div class="col-1"></div>
+  <div class="col-lg-1"></div>
 </template>
 
 <script>

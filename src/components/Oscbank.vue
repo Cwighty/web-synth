@@ -1,12 +1,13 @@
 <!--Oscbank.vue represents the oscillator control section of the control rack-->
 <template>
-  <div class="col">
+  <div class="col-lg" id="oscbank">
     <h5>Oscillator Bank</h5>
     <div class="row">
+      <h6>Oscillator 1</h6>
       <select
         v-model="range1"
         v-on:input="$store.commit('updateRange1', $event)"
-        class="col"
+        class="col-lg"
       >
         <option value="2">2'</option>
         <option value="1">4'</option>
@@ -15,11 +16,11 @@
         <option value="-2">32'</option>
         <option value="-3">LO</option>
       </select>
-      <div class="col"></div>
+      <div class="col-lg"></div>
       <select
         v-model="wavetable1"
         v-on:input="$store.commit('updateWavetable1', $event)"
-        class="col"
+        class="col-lg"
       >
         <option value="sine">Sine</option>
         <option value="square">Square</option>
@@ -28,10 +29,11 @@
       </select>
     </div>
     <div class="row">
+      <h6>Oscillator 2</h6>
       <select
         v-model="range2"
         v-on:input="$store.commit('updateRange2', $event)"
-        class="col"
+        class="col-lg"
       >
         <option value="2">2'</option>
         <option value="1">4'</option>
@@ -43,19 +45,19 @@
       <webaudio-knob
         v-model="detune2"
         v-on:input="$store.commit('updateDetune2', $event)"
-        class="col"
+        class="col-lg"
         src="./src/assets/knobs/orange_knob.png"
         diameter="50"
         type="range"
-        min="-7"
+        min="-16"
         value="0"
-        max="7"
+        max="16"
         step=".1"
       ></webaudio-knob>
       <select
         v-model="wavetable2"
         v-on:input="$store.commit('updateWavetable2', $event)"
-        class="col"
+        class="col-lg"
       >
         <option value="sine">Sine</option>
         <option value="square">Square</option>
@@ -64,10 +66,11 @@
       </select>
     </div>
     <div class="row">
+      <h6>Oscillator 3</h6>
       <select
         v-model="range3"
         v-on:input="$store.commit('updateRange3', $event)"
-        class="col"
+        class="col-lg"
       >
         <option value="2">2'</option>
         <option value="1">4'</option>
@@ -79,31 +82,36 @@
       <webaudio-knob
         v-model="detune3"
         v-on:input="$store.commit('updateDetune3', $event)"
-        class="col"
+        class="col-lg"
         src="./src/assets/knobs/orange_knob.png"
         diameter="50"
         type="range"
-        min="-7"
+        min="-16"
         value="0"
-        max="7"
+        max="16"
         step=".1"
       ></webaudio-knob>
       <select
         v-model="wavetable3"
         v-on:input="$store.commit('updateWavetable3', $event)"
-        class="col"
+        class="col-lg"
       >
         <option value="sine">Sine</option>
         <option value="square">Square</option>
         <option value="sawtooth">Sawtooth</option>
         <option value="triangle">Triangle</option>
       </select>
+      <div class="row">
+        <h6 class="col-lg">Range</h6>
+        <h6 class="col-lg">Detune</h6>
+        <h6 class="col-lg">Wave</h6>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import store from '../state.js'
+import store from "../state.js";
 export default {
   name: "Oscbank",
   props: {},
@@ -121,29 +129,29 @@ export default {
   },
   computed: {},
   methods: {
-    updateRange1(e){
-      this.$store.commit('updateRange1', e);
+    updateRange1(e) {
+      this.$store.commit("updateRange1", e);
     },
-    updateRange2(e){
-      this.$store.commit('updateRange2', e);
+    updateRange2(e) {
+      this.$store.commit("updateRange2", e);
     },
-    updateRange3(e){
-      this.$store.commit('updateRange3', e);
+    updateRange3(e) {
+      this.$store.commit("updateRange3", e);
     },
-    updateWavetable1(e){
-      this.$store.commit('updateWavetable1', e);
+    updateWavetable1(e) {
+      this.$store.commit("updateWavetable1", e);
     },
-    updateWavetable2(e){
-      this.$store.commit('updateWavetable2', e);
+    updateWavetable2(e) {
+      this.$store.commit("updateWavetable2", e);
     },
-    updateWavetable3(e){
-      this.$store.commit('updateWavetable3', e);
+    updateWavetable3(e) {
+      this.$store.commit("updateWavetable3", e);
     },
-    updateDetune1(e){
-      this.$store.commit('updateDetune1', e);
+    updateDetune1(e) {
+      this.$store.commit("updateDetune1", e);
     },
-    updateDetune2(e){
-      this.$store.commit('updateDetune2', e);
+    updateDetune2(e) {
+      this.$store.commit("updateDetune2", e);
     },
   },
 };
