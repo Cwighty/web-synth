@@ -22,6 +22,13 @@ export let presets = [
             volumeEnv: [0, 10, 1, 400],
             masterVolume: 0.5,
             masterReverb: 0.5,
+            compressor: {
+                threshold: -24, // db
+                knee: 30, // 0-40
+                ratio: 12,
+                attack: 0.003, // seconds
+                release: 0.25, // seconds
+            }
         }
     }
 ];

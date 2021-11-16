@@ -123,7 +123,28 @@ const store = createStore({
         updateReverbMix(state, e)
         {
             state.synthSettings.masterReverb = e.target.value;
-        }
+        },
+        updateCompThreshold(state, e)
+        {
+            state.synthSettings.compressor.threshold = e.target.value;
+        },
+        updateCompKnee(state, e)
+        {
+            state.synthSettings.compressor.knee = e.target.value;
+        },
+        updateCompRatio(state, e)
+        {
+            state.synthSettings.compressor.ratio = e.target.value;
+        },
+        updateCompAttack(state, e)
+        {
+            state.synthSettings.compressor.attack = e.target.value;
+        },
+        updateCompRelease(state, e)
+        {
+            state.synthSettings.compressor.release = e.target.value;
+        },
+        
     },
 });
 

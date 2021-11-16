@@ -333,6 +333,31 @@ export default {
         console.log(value);
         this.reverbMix.gain.value = value;
       }
+      if (mutation.type == "updateCompThreshold")
+      {
+        console.log(value);
+        this.compressor.threshold.value = value;
+      }
+      if (mutation.type == "updateCompKnee")
+      {
+        console.log(value);
+        this.compressor.knee.value = value;
+      }
+      if (mutation.type == "updateCompRatio")
+      {
+        console.log(value);
+        this.compressor.ratio.value = value;
+      }
+      if (mutation.type == "updateCompAttack")
+      {
+        console.log(value);
+        this.compressor.attack.value = value;
+      }
+      if (mutation.type == "updateCompRelease")
+      {
+        console.log(value);
+        this.compressor.release.value = value;
+      }
     },
   },
   async mounted() {
@@ -358,8 +383,9 @@ export default {
     this.masterVolume.gain.value = synthSettings.masterVolume;
     this.masterVolume.connect(this.audioContext.destination);
 
+    // Reverb
     this.reverbMix = new GainNode(this.audioContext);
-    this.reverbMix.gain.value = .01;
+    this.reverbMix.gain.value = synthSettings.masterReverb;
     this.reverbMix.connect(this.masterVolume)
 
     this.createReverb = async (audioContext)=> {
@@ -375,9 +401,19 @@ export default {
     this.reverb = await this.createReverb(this.audioContext);
     this.reverb.connect(this.reverbMix);
 
+    // Compressor
+    this.compressor = new DynamicsCompressorNode(this.audioContext);
+    this.compressor.threshold.value = synthSettings.compressor.threshold;
+    this.compressor.knee.value = synthSettings.compressor.knee;
+    this.compressor.ratio.value = synthSettings.compressor.ratio;
+    this.compressor.attack.value = synthSettings.compressor.attack;
+    this.compressor.release.value = synthSettings.compressor.release;
+    this.compressor.connect(this.masterVolume);
+
+
     this.masterChainNode = new GainNode(this.audioContext);
-    this.masterChainNode.gain.value = 1;
-    this.masterChainNode.connect(this.reverb);
+    this.masterChainNode.gain.value = 0.99;
+    this.masterChainNode.connect(this.compressor);
     this.masterChainNode.connect(this.masterVolume);
   },
 };
