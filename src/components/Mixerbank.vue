@@ -1,12 +1,13 @@
 <!--Oscbank.vue represents the oscillator volume mixer section of the control rack-->
 <template>
-  <div class="col-lg-1" id="mixerbank">
-    <h5>Mixer</h5>
-    <div class="row">
+  <div class="grid grid-rows-4 bg-gray-800 text-white justify-items-center" id="mixerbank">
+  <h5 class="">Mixer</h5>
+    <div class="row-span-1">
       <webaudio-knob
         v-model="osc1mix"
         v-on:input="$store.commit('updateOscMix1', $event)"
         src="./src/assets/knobs/orange_slider.png"
+        class=""
         sprites="30"
         type="range"
         min="0.0001"
@@ -14,10 +15,9 @@
         value=".5"
         step="0.001"
         log="1"
-        
       ></webaudio-knob>
     </div>
-    <div class="row">
+    <div class="row-span-1">
       <webaudio-knob
         v-model="osc2mix"
         v-on:input="$store.commit('updateOscMix2', $event)"
@@ -31,7 +31,7 @@
         log="1"
       ></webaudio-knob>
     </div>
-    <div class="row">
+    <div class="row-span-1">
       <webaudio-knob
         v-model="osc3mix"
         v-on:input="$store.commit('updateOscMix3', $event)"

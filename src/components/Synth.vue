@@ -1,18 +1,16 @@
 <!--Syhtn.vue is the highest level synth component containing all the audio logic for the synth as well.-->
-<template>
-  <body>
-    <div class="container bg-dark text-light">
-      <div class="row">
-        <p>{{ preset.settings.osc1Wave }}</p>
+<template> 
+    <div class="grid  grid-cols-5 bg-gray-800 text-white">
+      <div class="col-span-5">
+        <h1>WEB SYNTH</h1>
       </div>
-      <div class="row">
+      <div class="col-span-5">
         <Rack v-on:audioReset="resetAudio()" />
       </div>
-      <div class="row">
-        <Keyboard />
+      <div class="col-span-5">
+        <Keyboard v-on:keyTouch="console.log($event)" />
       </div>
     </div>
-  </body>
 </template>
 
 <script>

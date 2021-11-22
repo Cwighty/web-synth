@@ -1,86 +1,104 @@
 <!--Keyboard.vue represents the lower keyboard / playing controls of a synth including the global volume / keyboard / pitch wheel / etc-->
 <template>
-  <div class="col-lg-1"></div>
-  <div class="col-lg-5 keyboard">
-    <webaudio-keyboard keys="40" width="300" height="100"></webaudio-keyboard>
-  </div>
-  <div class="col-lg-3" id="effects">
-    <h5>Effects</h5>
-    <div class="row">
-      <h6>Compressor</h6>
-      <webaudio-knob
-        class="col-lg-1"
-        v-model="compThreshold"
-        v-on:input="$store.commit('updateCompThreshold', $event)"
-        src="./src/assets/knobs/orange_knob.png"
-        diameter="20"
-        tooltip="%s"
-        type="range"
-        min="-100"
-        max="0"
-        value="-24"
-        step="1"
-      ></webaudio-knob>
-      <webaudio-knob
-        class="col-lg-1"
-        v-model="compRatio"
-        v-on:input="$store.commit('updateCompRatio', $event)"
-        src="./src/assets/knobs/orange_knob.png"
-        diameter="20"
-        tooltip="%s"
-        type="range"
-        min="1"
-        max="20"
-        value="12"
-        step="1"
-      ></webaudio-knob>
-      <webaudio-knob
-        class="col-lg-1"
-        v-model="compKnee"
-        v-on:input="$store.commit('updateCompKnee', $event)"
-        src="./src/assets/knobs/orange_knob.png"
-        diameter="20"
-        tooltip="%s"
-        type="range"
-        min="1"
-        max="40"
-        value="30"
-        step="1"
-      ></webaudio-knob>
-      <webaudio-knob
-        class="col-lg-1"
-        v-model="compAttack"
-        v-on:input="$store.commit('updateCompAttack', $event)"
-        src="./src/assets/knobs/orange_knob.png"
-        diameter="20"
-        tooltip="%s"
-        type="range"
-        min="0"
-        max="1"
-        value=".003"
-        step="0.001"
-      ></webaudio-knob>
-      <webaudio-knob
-        class="col-lg-1"
-        v-model="compRelease"
-        v-on:input="$store.commit('updateCompRelease', $event)"
-        src="./src/assets/knobs/orange_knob.png"
-        diameter="20"
-        tooltip="%s"
-        type="range"
-        min="0"
-        max="1"
-        value=".25"
-        step="0.01"
-      ></webaudio-knob>
+  <div class="grid grid-cols-11">
+    <div class="col-span-1"></div>
+    <div class="keyboard col-span-4">
+      <webaudio-keyboard v-on:input="$emit('keyTouch', $event.target.value)" keys="40" width="480" height="130"></webaudio-keyboard>
     </div>
-    <div class="row">
+    <div class="col-span-5" id="effects">
+      <h5>Effects</h5>
+      <div class="col-span-3">
+        <h6>Compressor</h6>
+        <webaudio-knob
+          class=""
+          v-model="compThreshold"
+          v-on:input="$store.commit('updateCompThreshold', $event)"
+          src="./src/assets/knobs/orange_knob.png"
+          diameter="20"
+          tooltip="%s"
+          type="range"
+          min="-100"
+          max="0"
+          value="-24"
+          step="1"
+        ></webaudio-knob>
+        <webaudio-knob
+          class=""
+          v-model="compRatio"
+          v-on:input="$store.commit('updateCompRatio', $event)"
+          src="./src/assets/knobs/orange_knob.png"
+          diameter="20"
+          tooltip="%s"
+          type="range"
+          min="1"
+          max="20"
+          value="12"
+          step="1"
+        ></webaudio-knob>
+        <webaudio-knob
+          class=""
+          v-model="compKnee"
+          v-on:input="$store.commit('updateCompKnee', $event)"
+          src="./src/assets/knobs/orange_knob.png"
+          diameter="20"
+          tooltip="%s"
+          type="range"
+          min="1"
+          max="40"
+          value="30"
+          step="1"
+        ></webaudio-knob>
+        <webaudio-knob
+          class=""
+          v-model="compAttack"
+          v-on:input="$store.commit('updateCompAttack', $event)"
+          src="./src/assets/knobs/orange_knob.png"
+          diameter="20"
+          tooltip="%s"
+          type="range"
+          min="0"
+          max="1"
+          value=".003"
+          step="0.001"
+        ></webaudio-knob>
+        <webaudio-knob
+          class=""
+          v-model="compRelease"
+          v-on:input="$store.commit('updateCompRelease', $event)"
+          src="./src/assets/knobs/orange_knob.png"
+          diameter="20"
+          tooltip="%s"
+          type="range"
+          min="0"
+          max="1"
+          value=".25"
+          step="0.01"
+        ></webaudio-knob>
+      </div>
+      <div class="row">
+        
+      </div>
+    </div>
+    <div class="">
       <h6>Reverb</h6>
+        <webaudio-knob
+          v-model="reverbMix"
+          v-on:input="$store.commit('updateReverbMix', $event)"
+          src="./src/assets/knobs/orange_knob.png"
+          diameter="20"
+          tooltip="%s"
+          type="range"
+          min="0"
+          max="1"
+          value=".5"
+          step="0.01"
+        ></webaudio-knob>
+      <h3>Volume</h3>
       <webaudio-knob
-        v-model="reverbMix"
-        v-on:input="$store.commit('updateReverbMix', $event)"
-        src="./src/assets/knobs/orange_knob.png"
-        diameter="20"
+        v-model="masterVolume"
+        v-on:input="$store.commit('updateMasterVolume', $event)"
+        src="./src/assets/knobs/orange_slider.png"
+        sprites="30"
         tooltip="%s"
         type="range"
         min="0"
@@ -89,23 +107,8 @@
         step="0.01"
       ></webaudio-knob>
     </div>
+    <div class="col-span-1"></div>
   </div>
-  <div class="col-lg-1">
-    <h3>Volume</h3>
-    <webaudio-knob
-      v-model="masterVolume"
-      v-on:input="$store.commit('updateMasterVolume', $event)"
-      src="./src/assets/knobs/orange_slider.png"
-      sprites="30"
-      tooltip="%s"
-      type="range"
-      min="0"
-      max="1"
-      value=".5"
-      step="0.01"
-    ></webaudio-knob>
-  </div>
-  <div class="col-lg-1"></div>
 </template>
 
 <script>

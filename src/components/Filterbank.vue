@@ -1,10 +1,12 @@
 <!--Filterbank.vue represents the filter control section of the control rack-->
 <template>
-  <div class="col-lg-1" id="filterbank">
-    <h5>Filter</h5>
-    <label class="row"
+  <div class="flex flex-col" id="filterbank">
+    <h5 class="">Filter</h5>
+    <label class=""
       >Cutoff
+    </label>
       <webaudio-knob
+        class="mb-5"
         v-model="cutoff"
         v-on:input="$store.commit('updateCutoff', $event)"
         src="./src/assets/knobs/orange_knob.png"
@@ -17,10 +19,11 @@
         value="0"
         step="1"
       ></webaudio-knob>
-    </label>
-    <label class="row"
+    <label class=""
       >Emphasis
+    </label>
       <webaudio-knob
+        class="mb-5"
         v-model="emphasis"
         v-on:input="$store.commit('updateEmphasis', $event)"
         src="./src/assets/knobs/orange_knob.png"
@@ -33,10 +36,11 @@
         value="0.01"
         step=".01"
       ></webaudio-knob>
-    </label>
-    <label class="row"
+    <label class=""
       >Q
+    </label>
       <webaudio-knob
+        class="mb-5"
         v-model="q"
         v-on:input="$store.commit('updateQ', $event)"
         src="./src/assets/knobs/orange_knob.png"
@@ -48,7 +52,6 @@
         value="0.01"
         step=".01"
       ></webaudio-knob>
-    </label>
   </div>
 </template>
 

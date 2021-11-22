@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="/src/assets/webaudio-controls.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="grid grid-cols-3 gap-3 justify-items-center bg-gray-800 text-white border-3 border-blue-300" id="oscbank">
+        <h5 class="col-span-3 mb-1">Oscillator Bank</h5>
+        <div class="col-span-3 inline-grid grid-cols-3 justify-items-center">
+          <h6 class="col-span-3 mb-2">Oscillator 1</h6>
+          <select
+            v-model="range1"
+            v-on:input="$store.commit('updateRange1', $event)"
+            class="text-black h-6 w-10 col-span-1"
+          >
+            <option value="2">2'</option>
+            <option value="1">4'</option>
+            <option value="0">8'</option>
+            <option value="-1">16'</option>
+            <option value="-2">32'</option>
+            <option value="-3">LO</option>
+          </select>
+          <div class="col-span"></div>
+          <select
+            v-model="wavetable1"
+            v-on:input="$store.commit('updateWavetable1', $event)"
+            class="text-black h-6 w-13 col-span-1"
+          >
+            <option value="sine">Sine</option>
+            <option value="square">Square</option>
+            <option value="sawtooth">Sawtooth</option>
+            <option value="triangle">Triangle</option>
+          </select>
+        </div>
+        <div class="col-span-3 inline-grid grid-cols-3 justify-items-center">
+          <h6 class="col-span-3 mb-2">Oscillator 2</h6>
+          <select
+            v-model="range2"
+            v-on:input="$store.commit('updateRange2', $event)"
+            class="text-black h-6 w-10 col-span-1"
+          >
+            <option value="2">2'</option>
+            <option value="1">4'</option>
+            <option value="0">8'</option>
+            <option value="-1">16'</option>
+            <option value="-2">32'</option>
+            <option value="-3">LO</option>
+          </select>
+          <webaudio-knob
+            v-model="detune2"
+            v-on:input="$store.commit('updateDetune2', $event)"
+            class=""
+            src="/src/assets/knobs/orange_knob.png"
+            diameter="50"
+            type="range"
+            min="-16"
+            value="0"
+            max="16"
+            step=".1"
+          ></webaudio-knob>
+          <select
+            v-model="wavetable2"
+            v-on:input="$store.commit('updateWavetable2', $event)"
+            class="text-black h-6 w-13 col-span-1"
+          >
+            <option value="sine">Sine</option>
+            <option value="square">Square</option>
+            <option value="sawtooth">Sawtooth</option>
+            <option value="triangle">Triangle</option>
+          </select>
+        </div>
+        <div class="col-span-3 inline-grid grid-cols-3 justify-items-centercol-span-3 inline-grid grid-cols-3 justify-items-center">
+          <h6 class="col-span-3 mb-2">Oscillator 3</h6>
+          <select
+            v-model="range3"
+            v-on:input="$store.commit('updateRange3', $event)"
+            class="text-black h-6 w-10 col-span-1"
+          >
+            <option value="2">2'</option>
+            <option value="1">4'</option>
+            <option value="0">8'</option>
+            <option value="-1">16'</option>
+            <option value="-2">32'</option>
+            <option value="-3">LO</option>
+          </select>
+          <webaudio-knob
+            v-model="detune3"
+            v-on:input="$store.commit('updateDetune3', $event)"
+            class=""
+            src="/src/assets/knobs/orange_knob.png"
+            diameter="50"
+            type="range"
+            min="-16"
+            value="0"
+            max="16"
+            step=".1"
+          ></webaudio-knob>
+          <select
+            v-model="wavetable3"
+            v-on:input="$store.commit('updateWavetable3', $event)"
+            class="text-black h-6 w-13 col-span-1"
+          >
+            <option value="sine">Sine</option>
+            <option value="square">Square</option>
+            <option value="sawtooth">Sawtooth</option>
+            <option value="triangle">Triangle</option>
+          </select>
+        </div>
+        <div class="col-span-3 inline-grid grid-cols-3 justify-items-center gap-7">
+          <h6 class="m-1">Range</h6>
+          <h6 class="m-1">Detune</h6>
+          <h6 class="m-1">Wave</h6>
+        </div>
+    </div>
+</body>
+</html>

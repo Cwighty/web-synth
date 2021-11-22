@@ -1,13 +1,23 @@
 <!--Oscbank.vue represents the oscillator control section of the control rack-->
 <template>
-  <div class="col-lg" id="oscbank">
-    <h5>Oscillator Bank</h5>
-    <div class="row">
-      <h6>Oscillator 1</h6>
+  <div
+    class="
+      grid
+      grid-cols-3
+      gap-3
+      justify-items-center
+      bg-gray-800
+      text-white
+    "
+    id="oscbank"
+  >
+    <h5 class="col-span-3 mb-1">Oscillator Bank</h5>
+    <div class="col-span-3 grid grid-cols-3 justify-items-center">
+      <h6 class="col-span-3 mb-2">Oscillator 1</h6>
       <select
         v-model="range1"
         v-on:input="$store.commit('updateRange1', $event)"
-        class="col-lg"
+        class="text-black h-6 w-10 col-span-1"
       >
         <option value="2">2'</option>
         <option value="1">4'</option>
@@ -16,11 +26,11 @@
         <option value="-2">32'</option>
         <option value="-3">LO</option>
       </select>
-      <div class="col-lg"></div>
+      <div class="col-span"></div>
       <select
         v-model="wavetable1"
         v-on:input="$store.commit('updateWavetable1', $event)"
-        class="col-lg"
+        class="text-black h-6 w-13 col-span-1"
       >
         <option value="sine">Sine</option>
         <option value="square">Square</option>
@@ -28,12 +38,12 @@
         <option value="triangle">Triangle</option>
       </select>
     </div>
-    <div class="row">
-      <h6>Oscillator 2</h6>
+    <div class="col-span-3 grid grid-cols-3 justify-items-center">
+      <h6 class="col-span-3 mb-2">Oscillator 2</h6>
       <select
         v-model="range2"
         v-on:input="$store.commit('updateRange2', $event)"
-        class="col-lg"
+        class="text-black h-6 w-10 col-span-1"
       >
         <option value="2">2'</option>
         <option value="1">4'</option>
@@ -45,8 +55,8 @@
       <webaudio-knob
         v-model="detune2"
         v-on:input="$store.commit('updateDetune2', $event)"
-        class="col-lg"
-        src="./src/assets/knobs/orange_knob.png"
+        class=""
+        src="/src/assets/knobs/orange_knob.png"
         diameter="50"
         type="range"
         min="-16"
@@ -57,7 +67,7 @@
       <select
         v-model="wavetable2"
         v-on:input="$store.commit('updateWavetable2', $event)"
-        class="col-lg"
+        class="text-black h-6 w-13 col-span-1"
       >
         <option value="sine">Sine</option>
         <option value="square">Square</option>
@@ -65,12 +75,19 @@
         <option value="triangle">Triangle</option>
       </select>
     </div>
-    <div class="row">
-      <h6>Oscillator 3</h6>
+    <div
+      class="
+        col-span-3
+        grid
+        grid-cols-3
+        justify-items-center
+      "
+    >
+      <h6 class="col-span-3 mb-2">Oscillator 3</h6>
       <select
         v-model="range3"
         v-on:input="$store.commit('updateRange3', $event)"
-        class="col-lg"
+        class="text-black h-6 w-10 col-span-1"
       >
         <option value="2">2'</option>
         <option value="1">4'</option>
@@ -82,8 +99,8 @@
       <webaudio-knob
         v-model="detune3"
         v-on:input="$store.commit('updateDetune3', $event)"
-        class="col-lg"
-        src="./src/assets/knobs/orange_knob.png"
+        class=""
+        src="/src/assets/knobs/orange_knob.png"
         diameter="50"
         type="range"
         min="-16"
@@ -94,18 +111,18 @@
       <select
         v-model="wavetable3"
         v-on:input="$store.commit('updateWavetable3', $event)"
-        class="col-lg"
+        class="text-black h-6 w-13 col-span-1"
       >
         <option value="sine">Sine</option>
         <option value="square">Square</option>
         <option value="sawtooth">Sawtooth</option>
         <option value="triangle">Triangle</option>
       </select>
-      <div class="row">
-        <h6 class="col-lg">Range</h6>
-        <h6 class="col-lg">Detune</h6>
-        <h6 class="col-lg">Wave</h6>
-      </div>
+    </div>
+    <div class="col-span-3 grid grid-cols-3 justify-items-center gap-7">
+      <h6 class="m-1">Range</h6>
+      <h6 class="m-1">Detune</h6>
+      <h6 class="m-1">Wave</h6>
     </div>
   </div>
 </template>
