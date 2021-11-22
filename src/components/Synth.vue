@@ -8,7 +8,7 @@
         <Rack v-on:audioReset="resetAudio()" />
       </div>
       <div class="col-span-5">
-        <Keyboard v-on:keyTouch="console.log($event)" />
+        <Keyboard v-on:keyTouch="touchKeyDown($event)" />
       </div>
     </div>
 </template>
@@ -189,6 +189,13 @@ export default {
       if (note) {
         this.triggerOff(note);
       }
+    },
+    touchKeyDown(e){
+      console.log(e);
+      this.triggerOn(e.note[1]);
+    },
+    touchKeyUp(e){
+
     },
     stateSubscribe(mutation, state) {
       // This method is called for every change to the synth state

@@ -1,6 +1,6 @@
 <!--Oscbank.vue represents the oscillator volume mixer section of the control rack-->
 <template>
-  <div class="grid grid-rows-4 bg-gray-800 text-white justify-items-center" id="mixerbank">
+  <div class="grid grid-rows-1 bg-gray-800 text-white justify-items-center" id="mixerbank">
   <h5 class="">Mixer</h5>
     <div class="row-span-1">
       <webaudio-knob
@@ -15,6 +15,9 @@
         value=".5"
         step="0.001"
         log="1"
+        tooltip="%s"
+        width=150
+        height=50
       ></webaudio-knob>
     </div>
     <div class="row-span-1">
@@ -29,6 +32,9 @@
         value=".001"
         step="0.001"
         log="1"
+        tooltip="%s"
+        width=150
+        height=50
       ></webaudio-knob>
     </div>
     <div class="row-span-1">
@@ -43,6 +49,9 @@
         value=".001"
         step="0.001"
         log="1"
+        tooltip="%s"
+        width=150
+        height=50
       ></webaudio-knob>
     </div>
   </div>

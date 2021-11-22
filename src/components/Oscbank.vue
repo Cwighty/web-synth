@@ -17,11 +17,11 @@
       <select
         v-model="range1"
         v-on:input="$store.commit('updateRange1', $event)"
-        class="text-black h-6 w-10 col-span-1"
+        class="text-black h-10 w-20 col-span-1"
       >
         <option value="2">2'</option>
         <option value="1">4'</option>
-        <option value="0">8'</option>
+        <option value="0" selected>8'</option>
         <option value="-1">16'</option>
         <option value="-2">32'</option>
         <option value="-3">LO</option>
@@ -30,7 +30,7 @@
       <select
         v-model="wavetable1"
         v-on:input="$store.commit('updateWavetable1', $event)"
-        class="text-black h-6 w-13 col-span-1"
+        class="text-black h-10 w-25 col-span-1"
       >
         <option value="sine">Sine</option>
         <option value="square">Square</option>
@@ -43,11 +43,11 @@
       <select
         v-model="range2"
         v-on:input="$store.commit('updateRange2', $event)"
-        class="text-black h-6 w-10 col-span-1"
+        class="text-black h-10 w-20 col-span-1"
       >
         <option value="2">2'</option>
         <option value="1">4'</option>
-        <option value="0">8'</option>
+        <option value="0" selected>8'</option>
         <option value="-1">16'</option>
         <option value="-2">32'</option>
         <option value="-3">LO</option>
@@ -67,7 +67,7 @@
       <select
         v-model="wavetable2"
         v-on:input="$store.commit('updateWavetable2', $event)"
-        class="text-black h-6 w-13 col-span-1"
+        class="text-black h-10 w-25 col-span-1"
       >
         <option value="sine">Sine</option>
         <option value="square">Square</option>
@@ -87,11 +87,11 @@
       <select
         v-model="range3"
         v-on:input="$store.commit('updateRange3', $event)"
-        class="text-black h-6 w-10 col-span-1"
+        class="text-black h-10 w-20 col-span-1"
       >
         <option value="2">2'</option>
         <option value="1">4'</option>
-        <option value="0">8'</option>
+        <option value="0" selected>8'</option>
         <option value="-1">16'</option>
         <option value="-2">32'</option>
         <option value="-3">LO</option>
@@ -111,7 +111,7 @@
       <select
         v-model="wavetable3"
         v-on:input="$store.commit('updateWavetable3', $event)"
-        class="text-black h-6 w-13 col-span-1"
+        class="text-black h-10 w-25 col-span-1"
       >
         <option value="sine">Sine</option>
         <option value="square">Square</option>
@@ -134,9 +134,9 @@ export default {
   props: {},
   data() {
     return {
-      range1: "2'",
-      range2: "2'",
-      range3: "2'",
+      range1: 0,
+      range2: 0,
+      range3: 0,
       wavetable1: "sine",
       wavetable2: "sine",
       wavetable3: "sine",
