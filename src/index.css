@@ -17,6 +17,26 @@ body{
 .container{
   width: 2000px !important;
 }
+#head{
+  border-bottom: 10px solid #474747;
+  background-size: cover;
+  background-position-y: 80%;
+  background-image: url('/src/assets/wood.jpg');
+}
+#rack{
+  padding-top: 30px;
+  
+}
+#base{
+  border-top: 10px solid #474747;
+  padding: 5px 5px;
+  background-size: cover;
+  background-position-y: center;
+  background-image: url('/src/assets/wood.jpg');
+}
+h1{
+  font-size: 80px;
+}
 h6{
   padding: 10px;
   padding-top: 15px;

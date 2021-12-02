@@ -1,13 +1,13 @@
 <!--Syhtn.vue is the highest level synth component containing all the audio logic for the synth as well.-->
 <template> 
     <div class="grid  grid-cols-5 bg-gray-800 text-white">
-      <div class="col-span-5">
-        <h1>WEB SYNTH</h1>
+      <div id="head" class="col-span-5">
+        <h1>WEB-3FE</h1>
       </div>
-      <div class="col-span-5">
+      <div id="rack" class="col-span-5">
         <Rack v-on:audioReset="resetAudio()" />
       </div>
-      <div class="col-span-5">
+      <div id="base" class="col-span-5">
         <Keyboard v-on:keyTouch="touchKeyDown($event)" />
       </div>
     </div>
@@ -192,7 +192,7 @@ export default {
     },
     touchKeyDown(e){
       console.log(e);
-      this.triggerOn(e.note[1]);
+      this.triggerOn(e.note[1]+(12*4));
     },
     touchKeyUp(e){
 
