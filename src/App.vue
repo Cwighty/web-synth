@@ -1,5 +1,7 @@
 <!--App.vue represents the main starting page of the web synth, with a button to load up the synth-->
 <template>
+  <div class="container">
+  <body>
   <div v-if="!clicked" class="text-white p-20">
     <h1>Welcome to my Web Synth</h1>
     <p class="m-5" style="font-size: 30px">Designed using vue and the web audio api.</p>
@@ -26,17 +28,17 @@
       Load Synth
     </button>
   </div>
-  <body>
   <div class="">
     <Synth class="m-20" v-if="clicked" />
   </div>
   </body>
-  <footer>
+  <footer class="text-white p-20">
   <h3>Check it out on Github</h3>
   <a href="https://github.com/Cwighty/web-synth">
   <img src="./assets/GitHub-Mark-64px.png">
   </a>
   </footer>
+  </div>
 </template>
 
 <script>
