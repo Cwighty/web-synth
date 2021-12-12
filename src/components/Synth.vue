@@ -8,7 +8,7 @@
         <Rack v-on:audioReset="resetAudio()" />
       </div>
       <div id="base" class="col-span-5">
-        <Keyboard v-on:keyTouch="touchKeyDown($event)" />
+        <Keyboard v-on:keyTouch="touchKey($event)" />
       </div>
     </div>
 </template>
@@ -75,14 +75,21 @@ function Voice(note, velocity, audioContext, outputNode) {
   this.osc3.connect(this.osc3Gain);
 
   // Set up filters
+  // var filterA = synthSettings.filterEnv[0];
+  // var filterD = synthSettings.filterEnv[1];
+  // var filterS = synthSettings.filterEnv[2];
+  // var filterR = synthSettings.filterEnv[3];
   this.filter1 = new BiquadFilterNode(audioContext);
-  this.filter1.frequency.linearRampToValueAtTime(
-    synthSettings.filterCutoff,
-    now
-  );
+  // this.filter1.frequency.cancelScheduledValues(now); 
+  // this.filter1.frequency.setValueAtTime(0.0, now);
+  // this.filter1.frequency.linearRampToValueAtTime(
+  //   synthSettings.filterCutoff,
+  //   now + filterA
+  // );
+  this.filter1.frequency.linearRampToValueAtTime(synthSettings.filterCutoff, now);
   this.filter1.Q.linearRampToValueAtTime(synthSettings.filterQ, now);
   this.filter1.type = "lowpass";
-  this.filter1.gain.value = 0.5; //synthSettings.filterGain;
+  this.filter1.gain.value = 0.5; 
 
   // Route oscillators through the filter
   this.osc1Gain.connect(this.filter1);
@@ -119,7 +126,7 @@ Voice.prototype.noteOff = function () {
   var now = this.audioContext.currentTime;
   let synthSettings = store.state.synthSettings;
 
-  this.volumeEnv.gain.cancelScheduledValues(now);
+  //this.volumeEnv.gain.cancelScheduledValues(now);
   this.volumeEnv.gain.linearRampToValueAtTime(
     0,
     now + synthSettings.volumeEnv[3] / 1000
@@ -173,21 +180,31 @@ export default {
       }
       delete this.voices;
     },
-    keyDown(e) {
-      // Triggers a new voice based on keyboard stroke
-      if (e.repeat) {
-        return;
+    // keyDown(e) {
+    //   // Triggers a new voice based on keyboard stroke
+    //   if (e.repeat) {
+    //     return;
+    //   }
+    //   let note = keys[e.keyCode];
+    //   if (note) {
+    //     this.triggerOn(note);
+    //   }
+    // },
+    // keyUp(e) {
+    //   // Triggers off a voice based on keyboard stroke
+    //   let note = keys[e.keyCode];
+    //   if (note) {
+    //     this.triggerOff(note);
+    //   }
+    // },
+    touchKey(e)
+    {
+      if(e.note[0] == 0){
+        this.touchKeyUp(e);
       }
-      let note = keys[e.keyCode];
-      if (note) {
-        this.triggerOn(note);
-      }
-    },
-    keyUp(e) {
-      // Triggers off a voice based on keyboard stroke
-      let note = keys[e.keyCode];
-      if (note) {
-        this.triggerOff(note);
+      else
+      {
+        this.touchKeyDown(e);
       }
     },
     touchKeyDown(e){
@@ -195,7 +212,7 @@ export default {
       this.triggerOn(e.note[1]+(12*4));
     },
     touchKeyUp(e){
-
+      this.triggerOff(e.note[1]+(12*4));
     },
     stateSubscribe(mutation, state) {
       // This method is called for every change to the synth state
@@ -419,6 +436,7 @@ export default {
     this.masterChainNode = new GainNode(this.audioContext);
     this.masterChainNode.gain.value = 0.99;
     this.masterChainNode.connect(this.compressor);
+    this.masterChainNode.connect(this.reverb);
     this.masterChainNode.connect(this.masterVolume);
   },
 };

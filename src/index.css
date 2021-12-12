@@ -11,9 +11,11 @@ html{
 }
 body, footer{
   display: inline-block;
-  width: 1480px;
   max-width: 1480px;
+  min-width: 1200px;
+  padding: 0px 0px;
   margin: 0% 0%;
+  
 }
 footer{
   display: flex;
@@ -24,15 +26,8 @@ a img{
   display: inline-block;
   width: 64px;
 }
-.container{
-  width: 1500px !important;
-  margin: 0% 0vw;
-}
 #head{
   border-bottom: 10px solid #474747;
-  background-size: cover;
-  background-position-y: 80%;
-  background-image: url('/src/assets/wood.jpg');
 }
 #rack{
   padding-top: 30px;
@@ -41,12 +36,9 @@ a img{
 #base{
   border-top: 10px solid #474747;
   padding: 5px 5px;
-  background-size: cover;
-  background-position-y: center;
-  background-image: url('/src/assets/wood.jpg');
 }
 h1{
-  font-size: 80px;
+  font-size: 60px;
 }
 h6, h3{
   padding: 10px;
@@ -99,20 +91,13 @@ h6, h3{
   margin: 0px;
 }
 
-.keyboard{
-  border: 1px solid #BBFFEA;
-}
-
-
 @media screen and (min-width: 1500px) {
-  .container{
-    width: 1500px !important;
-    margin: 0% 10vw;
+  body{
+    margin: 0% 5vw;
   }
 } 
  @media screen and (min-width: 1900px) {
-  .container{
-    width: 1500px !important;
+  body{
     margin: 0% 20vw;
   }
 }

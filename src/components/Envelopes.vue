@@ -1,7 +1,7 @@
 <!--Envelopes.vue represents the envelope control section of the control rack including both the filter and volume envelopes-->
 <template>
   <div class="grid grid-cols-4" id="envelopes">
-    <h5 class="col-span-4">Filter</h5>
+    <!-- <h5 class="col-span-4">Filter</h5>
     <div class="col-span-1 flex flex-col-reverse">
       <label>A</label>
       <webaudio-slider
@@ -45,7 +45,7 @@
         tooltip="%s ms"
         type="range"
         min="0"
-        max="10000"
+        max="1"
         value="20"
         step="1"
       ></webaudio-slider>
@@ -63,11 +63,11 @@
         min="0"
         max="5000"
         value="20"
-        step="1"
+        step="0.01"
       ></webaudio-slider>
-    </div>
+    </div> -->
 
-      <h5 class="col-span-4">Envelope</h5>
+      <h5 class="col-span-4 m-10">Envelope</h5>
       <div class="col-span-1 flex flex-col-reverse">
         <label>A</label>
         <webaudio-slider
