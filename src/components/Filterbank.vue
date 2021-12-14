@@ -1,10 +1,8 @@
 <!--Filterbank.vue represents the filter control section of the control rack-->
 <template>
   <div class="flex flex-col" id="filterbank">
-    <h5 class="">Filter</h5>
-    <label class=""
-      >Cutoff
-    </label>
+    <h5 class="pb-10">Filter</h5>
+<div class="grid grid-cols-2">
       <webaudio-knob
         class="mb-5"
         v-model="cutoff"
@@ -19,7 +17,7 @@
         value="0"
         step="1"
       ></webaudio-knob>
-    <label class=""
+    <!-- <label class=""
       >Emphasis
     </label>
       <webaudio-knob
@@ -35,10 +33,7 @@
         max="500"
         value="0.01"
         step=".01"
-      ></webaudio-knob>
-    <label class=""
-      >Q
-    </label>
+      ></webaudio-knob> -->
       <webaudio-knob
         class="mb-5"
         v-model="q"
@@ -52,7 +47,14 @@
         value="0.01"
         step=".01"
       ></webaudio-knob>
-  </div>
+    <label class=""
+      >Cutoff
+    </label>
+    <label class=""
+      >Q
+    </label>
+  </div>  
+</div>
 </template>
 
 <script>

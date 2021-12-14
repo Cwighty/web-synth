@@ -1,8 +1,8 @@
 <!--Keyboard.vue represents the lower keyboard / playing controls of a synth including the global volume / keyboard / pitch wheel / etc-->
 <template>
   <div class="grid grid-cols-11">
-    <div class="col-span-1"></div>
-    <div class="keyboard col-span-4">
+    <!-- <div class="col-span-1"></div> -->
+    <div class="keyboard col-span-5">
       <webaudio-keyboard
         v-on:change="$emit('keyTouch', $event)"
         keys="40"
@@ -10,7 +10,7 @@
         height="130"
       ></webaudio-keyboard>
     </div>
-    <div class="col-span-5" id="effects">
+    <div class="col-span-3" id="effects">
       <div class="col-span-3">
         <h6>Compressor</h6>
         <div class="grid grid-cols-5">
@@ -88,7 +88,8 @@
       </div>
       <div class="row"></div>
     </div>
-    <div class="">
+    <div class="grid">
+      <h6>Reverb</h6>
       <webaudio-knob
         v-model="reverbMix"
         v-on:input="$store.commit('updateReverbMix', $event)"
@@ -101,7 +102,10 @@
         value=".5"
         step="0.01"
       ></webaudio-knob>
-      <h6>Reverb</h6>
+      <label>Gain</label>
+    </div>
+    <div class="col-span-1">
+      <h6>Master Volume</h6>
       <webaudio-knob
         v-model="masterVolume"
         v-on:input="$store.commit('updateMasterVolume', $event)"
@@ -114,7 +118,6 @@
         value=".5"
         step="0.01"
       ></webaudio-knob>
-      <h3>Volume</h3>
     </div>
     <div class="col-span-1"></div>
   </div>

@@ -9,15 +9,38 @@
 html{
   background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgb(87, 109, 109) 0.1%, rgb(44, 58, 61) 94.2% );
 }
-body{
+body, footer{
   display: inline-block;
-  width: 1480px;
   max-width: 1480px;
+  min-width: 1200px;
+  padding: 0px 0px;
+  margin: 0% 0%;
+  
 }
-.container{
-  width: 2000px !important;
+footer{
+  display: flex;
+  flex-direction:column-reverse;
+  justify-content: center;
 }
-h6{
+a img{
+  display: inline-block;
+  width: 64px;
+}
+#head{
+  border-bottom: 10px solid #474747;
+}
+#rack{
+  padding-top: 30px;
+  
+}
+#base{
+  border-top: 10px solid #474747;
+  padding: 5px 5px;
+}
+h1{
+  font-size: 60px;
+}
+h6, h3{
   padding: 10px;
   padding-top: 15px;
   text-align: center;
@@ -68,6 +91,20 @@ h6{
   margin: 0px;
 }
 
-.keyboard{
-  border: 1px solid #BBFFEA;
+@media screen and (min-width: 1500px) {
+  body{
+    margin: 0% 5vw;
+  }
+} 
+ @media screen and (min-width: 1900px) {
+  body{
+    margin: 0% 20vw;
+  }
 }
+/*
+@media screen and (min-width: 2000px) {
+  .container{
+    width: 1500px !important;
+    margin-left: 38%;
+  }
+}  */

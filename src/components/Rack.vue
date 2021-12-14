@@ -11,12 +11,13 @@
     <div class="col-span-2">
       <Mixerbank />
     </div>
-    <div class="col-span-1">
-      <Filterbank />
-    </div>
+    <!-- <div class="col-span-1">
+    </div> -->
     <div class="col-span-3">
+      <Filterbank />       
       <Envelopes />
     </div>
+    <div class="col-span-1"></div>
   </div>
 </template>
 
